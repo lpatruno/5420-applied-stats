@@ -1,0 +1,45 @@
+- Thesis of the book is that data combined with practical methods can answer questions and guide decisions under uncertainty
+
+- Anecdotal evidence (based on data that is unpublished and usually personal), usually fails because
+     - small number of observations
+     - selection bias- people who give evidence might be biased
+     - confirmation bias
+     - inaccuracy
+
+- Tools of statistics include
+     - data collection
+     - descriptive statistics - stats that summarize data concisely, and evaluate ways of visualizing data
+     - exploratory data analysis - look for patterns, differences, and other features that address questions we are interested in
+     - estimation - use data from a sample to estimate characteristics of a population
+     - hypothesis testing - where we see apparent effects, evaluate whether the effect might have happened by chance
+
+- We can use these steps to reach conclusions that are more justifiable and more likely to be correct
+
+- Cross sectional study: captures a snapshot of a group at a point in time
+- Longitudinal study: observes a group repeatedly over a period of time
+
+- Ideally, surveys would collect data from every member of a population, but this is rarely possible
+     - instead, collect data from a subset of the population (sample)
+     
+- Cross-sectional studies are meant to be representative i.e. every member of the target population has an equal chance of participating
+
+- NSFW data is oversampled, certain groups were recruited at higher rates than their representation in US population in order to make sure that number of respondents in each of these groups is large enough to draw valid statistical inferences
+     - drawback of this is that it is not as easy to draw conclusions about the general population based on stats from the survey
+
+- Important to be familiar with the codebook, which documents design of the study, the survey questions, and the encoding of responses
+
+- Recodes are often based on logic that checks the consistency and accuracy of data. In general it is a good idea to use recodes when they are available.
+
+- Transformation
+     - when you import data, you often have to check for errors, deal with special values, convert data into different formats, and perform calculations.
+     - this is called data cleaning (and this takes the most time, usually, is boring, but is VERY important)
+     - dealing with missing data is a recurring issue
+     - in general, special values encoded as numbers are dangerous, because they might be mistakenly treated as valid data
+
+- Errors might be introduced when exporting data from one software environment into another
+     - One way to validate basic data is to compute basic stats and compare them to published results
+     - Discuss slicing pandas DataFrames
+
+- To work with data effectively, you have to think on two levels at the same time: the level of statistics and the level of context
+
+- Each record represents a person who provided honest answers to personal and difficult questions. We have an obligation to consider the people represented by the data, and to afford them respect and gratitude
