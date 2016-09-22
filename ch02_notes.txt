@@ -1,0 +1,43 @@
+Chapter 2 - Distributions
+
+- One of best ways to describe a variable is to report the values that appear and how many times each value appears
+     - most common representation of a distribution is a histogram, graph that shows frequency of each value
+
+- When looking at a new dataset, it’s good to explore variables one at a time with histograms and look at the 
+shape of the data. Is the data distributed according to a normal distribution? Uniform?
+
+
+Outliers
+
+    - Easy to identify most common values and the shape with histograms, outliers are harder to see
+     - outliers are extreme values that might be errors in measurement and recording, or might be accurate reports of rare events
+     - best way to handle outliers is with domain knowledge, info about where the data come from and what they mean
+
+- histograms are not the best choice for comparing two distributions
+     - visible differences can be due to sample sizes, instead use probability mass functions (next chapter)
+
+- Histogram is a complete description of the distribution of a sample
+     - often we want to summarize the distribution with summary statistics
+          - central tendency- do values tend to cluster around a particular point
+          - modes- is there more than one cluster
+          - spread- how much variability is there in the values
+          - tails- how quickly do the probabilities drop off as we move away from the modes
+          - outliers- are there extreme values from from the modes
+
+- most common summary statistic is the mean
+     - sometimes the mean is not a good description of a set of values (when variance is high)
+
+- Sometimes it is better to use mean and variance
+     - variance is a summary statistic intended to describe the variability or spread of a distribution about its mean
+     - variance is the mean squared deviation
+     - the square root of variance is called the standard deviation
+     - variance is hard to interpret, especially since the units are weeks^2. useful in some situations, but not a good summary statistic
+
+- An effect size is a summary statistic intended to describe the size of an effect. 
+    - For example, to describe the difference between two groups, one obvious choice is the difference in the means
+    - Another way of quantifying effect size is Cohen's d.
+
+- When reporting results, it is important to consider
+     - the intended audience (scientists vs mothers vs doctors)
+     - goals of the study (what story are you trying to tell)
+     - ensure that your results and honest and to acknowledge uncertainty and limitations
