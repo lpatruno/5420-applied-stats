@@ -1,0 +1,60 @@
+Scatter Plots
+     - Simplest way to check for a relationship between two variables is a scatter plot
+     - Scatter plots may introduce artifacts that have nothing to do with the data
+          - Sometimes data may be packed into columns, for instance if it has been rounded
+               - This can be adjusted by “jittering” the data, or adding some noise (for instance, to readjust the rounding)
+                    - Jittering should only be used for visualizing data, not for statistical analysis
+          - If there are a lot of data points, the densest parts of the figure may be hidden and undue emphasis placed on outliers
+               - This effect is called saturation and can be adjusted by adding transparency to the points
+          - If there is a lot of data, even transparency isn’t enough. We can adjust by creating hex bin plots, which divide the graph into hexagonal bins and colors each bin according to the number of data points that fall within it. An issue with this is that outliers completely disappear
+
+Characterizing relationships
+     - Scatter plots provide a general impression of the relationship between variables, but there are other visualizations that provide more insight into the nature of the relationship
+     - One option is to bin one variable and plot percentiles of the other
+     - Check out the book for the example it’s very illustrative
+
+Correlation
+     - A correlation is a statistic intended to quantify the strength of the relationship between two variables
+     - A challenge in measuring correlation is that the variables we want to compare are often not expressed in the same units (and often come from different distributions)
+          - One solution is to transform each value to standard scores, which is the number of standard deviations from the mean.
+               - This leads to Pearson product-moment correlation coefficient
+               - z_i = (x_i - mu)/sigma
+                    - deviation from mean / standard deviation - leads to mean 0 and std 1
+               - If X is normally distributed, so is Z. If X is skewed or has outliers, so does Z. In that case, better to use ranks.
+          - Another is to transform each value to its rank, which is its index in the sorted list of values.
+               - This leads to the Spearman rank correlation coefficient
+               - Let R be a new variable (the rank). Then R is uniformly distributed from 1..n (size of X)
+
+Covariance
+     - Covariance is a measure of tendency of two variables to vary together
+     - Let
+          dx_i = x_i - x_bar
+          dy_i = y_i - y_bar
+          If X and Y vary together, their deviations tend to have same sign. If we multiply them together, their product is positive when deviations have same sign and negative when they have opposite sign. So adding up the products gives a measure of the tendency to vary together
+     - Covariance is mean of these products: Cov(X, Y) =  (1/n) * sum_{i}(dx_i*dy_i)
+          - Covariance is the dot product of the deviations, divided by their length
+               - Hence, maximal if two vectors are identical, 0 if orthogonal, negative if they point in opposite directions
+
+Pearson’s correlation
+     - Covariance is hard to interpret. One issue is that its units are the products of units of X and Y
+     - One solution is to divide the deviations by the standard deviation, which yields standardized scores, and compute the product of standard scores
+          p_i =( (x_i - x_bar) * (y_i - y_bar) ) / (S_X * S_Y), where S_X and S_Y are the standard deviations of X and Y
+     - The mean of these products is rho = Cov(X, Y) / (S_X * S_Y), also known as Pearson’s correlation
+     - This value is easy to compute and to interpret. It is dimensionless.
+     - -1 <= rho <= 1
+     - If rho > 0, correlation positive. If rho < 0, correlation negative. Magnitude indicates strength of correlation
+     - Only measures linear relationships
+          - Correlation could be 0 if there is a nonlinear relationship. Hence, always look at a scatter plot of data before blindly computing correlation coefficient
+
+Spearman’s rank correlation
+     - Pearson’s correlation works well if the relationship between variables is linear and if the variables are roughly normal. But not robust to outliers.
+     - Instead, we can get the rank of each item and then compute Pearson’s correlation for the ranks
+     - This captures nonlinear relationships better than Pearson’s correlation and is robust to skewed distributions and outliers
+
+Correlation and Causation
+     - If variables A and B are correlated, there are three possible explanations: A caused B, or B caused A, or some other set of factors caused both A and B.
+     - Correlation alone does not distinguish between these explanations.
+     - To provide evidence of causation, we can
+          1. Use time. If A comes before B, then A can cause B but not the other way around.
+          2. Use randomness through randomized controlled trials. (treatment group vs control group)
+     - An alternative is a natural experiment
