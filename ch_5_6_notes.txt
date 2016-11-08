@@ -1,0 +1,76 @@
+Let’s review some of the key terms that we have read up so far
+     - A probability mass function (abbreviated PMF) is a function that gives the probability that a discrete random variable is exactly equal to some value (Wikipedia). That is, it maps from each possible value in a set to its probability.
+     - A cumulative distribution function (CDF) is the probability that a random variable will take on a values less than or equal to x. In other words, it’s a function that maps from a value x to its percentile rank.
+     - To get from a PMF to a CDF, sort the list of values and probabilities in the PMF, and then sum up the cumulative probabilities for each value. To go from a CDF to a PMF, compute the differences between cumulative probabilities.
+
+Probability Density Functions
+     - Thus far, we’ve mostly discussed discrete random variables. However, we can also discuss the cumulative distribution function for continuous random variable. Examples of continuous random variables include the temperature, weight, and speed.
+     - The derivative of a CDF for continuous random variables is called the Probability density function (PDF). It measures the relative likelihood for a random variable to take on a given value. The probability of the random variable falling within a particular range of values is given by the integral of this variable’s density over that range.
+     - It is not correct to think of the probability density function as strictly equivalent to the probability mass function for continuous random variables. Strictly speaking, the PDF maps from values x to probability densities for those values.
+
+From Discrete to Continous
+     - Often times when modeling data, it is valuable to understand discrete samples of data in terms of continuous analytical distributions.
+          - These distributions leave out details that are considered irrelevant such as measurement errors of noise in the data sample.
+          - These models act as a form of data compression. If we know the CDF or PDF of a distribution, we only need to know a set of parameters that is often much smaller than the entire set of data.
+          - These distributions are well studied in terms of mathematical theory and we can use the theory to explain why the observed data has a particular form.
+          - However, it’s important to note that the models are not perfect and never fit the data exactly. They are only as useful as they capture relevant aspects of data and leave out unnecessary details.
+
+Exponential distribution
+     - Cdf(x) = 1 - e^(-Lambda * x)
+     - Lambda determines the shape of the distribution (larger lambda means higher probability with smaller x)
+     - Exponential distributions come up when we look at series of events and measure the times between events, called inter arrival times
+     - If the events are equally likely to occur at any time, the distribution of inter arrival times tends to look like an exponential distribution
+     - How can we tell if data is modeled by an exponential distribution?
+          - Plot the complementary CDF, CCDF = 1 - CDF(x) on a log(y) scale. The result should be a straight line with slope -lambda
+          - If the result is not a perfect line, this indicates the exponential distribution is not a perfect model for the data i.e. the occurrence of the particular events are not equally likely at any time
+          - However, such a simplification reduces the amount of memory needed to summarize the distribution to a single parameter (lambda)
+     - Lambda can be interpreted as a rate; i.e. the number of events that occur, on average, in a unit of time
+     - The mean of an exponential distribution is 1/lambda, i.e. the mean time between events is 1/lambda
+
+Normal distribution
+     - Also called the Gaussian
+     - Approximately describes many real world phenomena
+     - Characterized by two parameters; the mean, mu, and the standard deviation, sigma
+     - Normal distribution with mu=0 and sigma=1 is called the standard normal distribution
+     - The CDF is defined by an integral that does not have a closed form solution, but there are algorithms that evaluate it (write it down for the students)
+          - CDF has a sigmoid shape
+     - For several analytical distributions (including exponential), there are simple transformations that we can use to test whether an analytic distribution is a good model for data
+     - There is no such transformation for the normal distribution
+     - Instead, we can plot a normal probability plot
+          - To do this
+               1. sort the values in the sample
+               2. From a standard normal distribution, generate a random sample with the same size as the sample, and sort it
+               3. Plot the sorted values from the sample versus the random values
+          - If the distribution of the sample is approximately normal, the result is a straight line with intercept mu and slope sigma
+          - The normal probability plot is a graphical technique to identify substantive departures from normality (Wikipedia).
+
+Lognormal Distribution
+     - If the logarithms of a set of values have a normal distribution, the values have a lognormal distribution.
+     - The CDF of the lognormal distribution is the CDF of the normal distribution with log(x) substituted for x.
+     - The parameters are denoted mu and sigma, but do not represent the mean and standard deviation.
+     - The mean is exp( (mu + sigma^2) / 2).
+     - If a sample is approximately lognormal and you plot its CDF on a log(x) scale, it will have the characteristic shape of a normal distribution.
+     - To test how well a sample fits the lognormal model, you can make a normal probability plot using the log of the values in the sample.
+
+Pareto distribution
+     - The Pareto distribution is named after economist Wilfredo Pareto.
+     - It is used to describe phenomena in the natural and social sciences including size of cities and towns, sand particles and meteorites.
+     - CDF(x) = 1 - (x/x_m)^(-alpha), where x_m and alpha determine location and shape of the distribution
+          - x_m is the minimum possible value
+     - To test whether a Pareto distribution models a sample, check if the CCDF (1-CDF) looks like a straight line on a log-log scale.
+          - It should look like a straight line with slope -alpha and intercept alpha*log(x_m).
+
+Kernel Density Estimation
+     - An algorithm that takes a sample and finds an appropriately smooth probability density function that fits the data.
+     - Estimating a density function with kernel density estimation is useful for several purposes
+          - Visualization: cumulative distribution functions are usually the best visualization for a distribution. After examining the cumulative distribution function, you can decide whether an estimated probability density function is an appropriate model of the distribution. If so, it can be a better choice for presenting the distribution to an audience that is unfamiliar with cumulative distribution functions
+          - Interpolation: An estimated probability density function is a way to get from a sample to a model of the population. If you have reason to believe the population distribution is smooth, you can use kernel density estimation to interpolate the density for values that do not appear in the sample.
+          - Simulation: If sample size is small, it might be appropriate to smooth the sample distribution using kernel density estimation, which allows a simulation to explore more possible outcomes, rather than replicate the observed data.
+
+Moments & Skewness
+     - A specific quantitative measure of the shape of a set of points (Wikipedia)
+     - First raw moment is the mean. Second central moment is variance. The normalized third central moment is called skewness.
+     - When reporting moment-based statistics, it is important to think about the units.
+          - For instance, since the second moment is squared, it is common to report the square root of the variance, also known as the standard deviation, since it has the same units as the random variable.
+     - Skewness is a measure of the lopsidedness of a distribution. A distribution skewed to the left will have a negative skewness, a distribution skewed to the right will have a positive skewness, and a symmetric distribution will have a skewness of 0.
+     - The sample skewness and Pearson’s median skewness coefficient both measure skewness. The latter statistic is most robust to outliers.
